@@ -165,10 +165,24 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  int t = x + 1;
-  int result = t + x;
-  printf("%d", t);
-  return !(result == -1);
+  // UMax = 2TMax + 1
+  int plusOne = x + 1;
+  // If x = -1; x = 0x00000000
+  x = x + plusOne;
+
+  /* This will give plusOne a value of 0 unless plusOne is originally 0
+   * This handles the case of -1 == UMax(unsigned) (0xffffffff)
+   */
+
+  plusOne = !(plusOne);
+  // Flip all bits in x
+  x = ~x;
+  // Or together all bits, if plusOne: x | plusOne = 0x00000001
+  x = x | plusOne;
+  // !x will only be zero now when TMax is used and not -1
+  x = !x;
+
+  return x;
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
