@@ -193,7 +193,15 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+  // Is 0xAA and not 0x55 because 1st bit is 0th bit
+  int a = 0xAA;
+  int b = a << 8;
+  int c = b << 8;
+  int d = c << 8;
+  
+  int odd_bits = a + b + c + d;
+  
+  return !((x & odd_bits) ^ odd_bits);
 }
 /* 
  * negate - return -x 
@@ -203,7 +211,7 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  return ~x + 1;
 }
 //3
 /* 
