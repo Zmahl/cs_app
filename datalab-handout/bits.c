@@ -224,7 +224,15 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  int in_range = 0x30;
+  in_range >> 24;
+  int test_range = in_range + 15;
+  printf("%d\n", x);
+  int in_thirties = x | in_range;
+  int is_valid = !(in_thirties & test_range)
+
+  return !(in_thirties & test_range);
+
 }
 /* 
  * conditional - same as x ? y : z 
